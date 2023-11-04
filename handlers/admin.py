@@ -19,13 +19,13 @@ class FSMAdmin(StatesGroup):
 
 # Проверка админа
 async def verification(message: types.Message):
-	if message.from_user.id == 1142268145:
+	if message.from_user.id == "your user-id":
 		await message.answer("Панель администратора👇", reply_markup = admin_kb.buttons)
 
 
 # Запуск состояния
 async def cm_start(message: types.Message):
-	if message.from_user.id == 1142268145:
+	if message.from_user.id == "your user-id":
 		await FSMAdmin.photo.set()
 		await message.answer("Загрузите фото📷", reply_markup = admin_kb.button_cancel)
 
@@ -88,7 +88,7 @@ async def del_callback_run(callback_query: types.CallbackQuery):
 
 # Метод удаления пиццы из меню
 async def delete_pizza(message: types.Message):
-	if message.from_user.id == 1142268145:
+	if message.from_user.id == "your user-id":
 		data = await sqlite_db.sql_read_admin()
 		for ret in data:
 			await bot.send_photo(message.from_user.id, ret[0], f"{ret[1]}\n\nОписание: {ret[2]}\n\nЦена: ₽{ret[3]}",
